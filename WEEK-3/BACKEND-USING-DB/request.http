@@ -1,0 +1,60 @@
+GET http://localhost:4000/user-api/users
+
+### read user by obj id
+GET http://localhost:4000/user-api/users/6983ae0721d4c9ab6b359a05
+
+###
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"ravi",
+    "password":"ravi",
+    "age":21
+
+}
+
+###
+PUT http://localhost:4000/user-api/users/6983ae0721d4c9ab6b359a05
+Content-Type: application/json
+
+{
+    "username":"ramu",
+    "password":"ramu",
+    "age":21
+
+}
+
+###delete user by objid
+DELETE http://localhost:4000/user-api/users/6983aed521d4c9ab6b359a0a
+
+### read all the products
+GET http://localhost:4000/product-api/products
+
+### add a product
+POST http://localhost:4000/product-api/products
+Content-Type: application/json
+
+{
+    "productname":"washing machine",
+    "brand":"lg",
+    "price":40000
+
+}
+
+### update product 
+PUT  http://localhost:4000/product-api/products/6983afd721d4c9ab6b359a15
+Content-Type: application/json
+
+{
+    "productname":"mobile",
+    "brand":"samsung",
+    "price":40000
+
+}
+
+### delete user by id
+DELETE http://localhost:4000/product-api/products/6983af6b21d4c9ab6b359a10
+
+### read user by id
+GET http://localhost:4000/product-api/products/6983b02521d4c9ab6b359a18

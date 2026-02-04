@@ -1,0 +1,219 @@
+use anuragdb
+switched to db anuragdb
+show databases
+EcomDB     168.00 KiB
+admin       40.00 KiB
+anuragdb    92.00 KiB
+anuragdb2   72.00 KiB
+anuragdb3  128.00 KiB
+config     112.00 KiB
+local       80.00 KiB
+db.createCollection("users")
+{ ok: 1 }
+db.users.insertOne({name:"ravi",age:19,city:"hyderabad"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6983b2bc1109e1f7dd13a7e1')
+}
+db.users.insertMany([{name:"vikas",age:25,city:"hyderabad"},{name:"sachin",age:20,city:"sec"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6983b2c61109e1f7dd13a7e2'),
+    '1': ObjectId('6983b2c61109e1f7dd13a7e3')
+  }
+}
+db.users.find()
+{
+  _id: ObjectId('6983b2bc1109e1f7dd13a7e1'),
+  name: 'ravi',
+  age: 19,
+  city: 'hyderabad'
+}
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e2'),
+  name: 'vikas',
+  age: 25,
+  city: 'hyderabad'
+}
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e3'),
+  name: 'sachin',
+  age: 20,
+  city: 'sec'
+}
+db.users.findOne()
+{
+  _id: ObjectId('6983b2bc1109e1f7dd13a7e1'),
+  name: 'ravi',
+  age: 19,
+  city: 'hyderabad'
+}
+db.users.updateOne({name:"ravi"},{$set:{name:"ravi kumar"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.users.deleteOne({name:"ravi kumar"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.users.find()
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e2'),
+  name: 'vikas',
+  age: 25,
+  city: 'hyderabad'
+}
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e3'),
+  name: 'sachin',
+  age: 20,
+  city: 'sec'
+}
+db.users.find({age:$gt:18})
+SyntaxError: Unexpected token, expected "," (1:22)
+
+> 1 | db.users.find({age:$gt:18})
+    |                       ^
+db.users.find({age:{$gt:18}})
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e2'),
+  name: 'vikas',
+  age: 25,
+  city: 'hyderabad'
+}
+{
+  _id: ObjectId('6983b2c61109e1f7dd13a7e3'),
+  name: 'sachin',
+  age: 20,
+  city: 'sec'
+}
+db.createCollection("emps")
+{ ok: 1 }
+show collections
+emps
+users
+db.emps.insertOne({eno:100,name:"ravi",skills:["javascript","css","react"],address:{city:"hyderabad",pincode:500039}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6983b3671109e1f7dd13a7e4')
+}
+db.emps.findOne()
+{
+  _id: ObjectId('6983b3671109e1f7dd13a7e4'),
+  eno: 100,
+  name: 'ravi',
+  skills: [
+    'javascript',
+    'css',
+    'react'
+  ],
+  address: {
+    city: 'hyderabad',
+    pincode: 500039
+  }
+}
+db.emps.findOne({name:"ravi"})
+{
+  _id: ObjectId('6983b3671109e1f7dd13a7e4'),
+  eno: 100,
+  name: 'ravi',
+  skills: [
+    'javascript',
+    'css',
+    'react'
+  ],
+  address: {
+    city: 'hyderabad',
+    pincode: 500039
+  }
+}
+db.emps.findOne({skills:["javascript","react","css"]})
+null
+db.emps.findOne({skills:{$all:["javascript","react","css"]}})
+{
+  _id: ObjectId('6983b3671109e1f7dd13a7e4'),
+  eno: 100,
+  name: 'ravi',
+  skills: [
+    'javascript',
+    'css',
+    'react'
+  ],
+  address: {
+    city: 'hyderabad',
+    pincode: 500039
+  }
+}
+db.emps.updateOne({eno:100},{$set:{"address.street":"uppal"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.emps.updateOne({eno:100},{$set:{"address.city":"vizag"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.emps.findOne()
+{
+  _id: ObjectId('6983b3671109e1f7dd13a7e4'),
+  eno: 100,
+  name: 'ravi',
+  skills: [
+    'javascript',
+    'css',
+    'react'
+  ],
+  address: {
+    city: 'vizag',
+    pincode: 500039,
+    street: 'uppal'
+  }
+}
+db.emps.updateOne({eno:100},{$unset:{name:""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.emps.updateOne({eno:100},{$set:{firstName:"kiran"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.emps.findOne()
+{
+  _id: ObjectId('6983b3671109e1f7dd13a7e4'),
+  eno: 100,
+  skills: [
+    'javascript',
+    'css',
+    'react'
+  ],
+  address: {
+    city: 'vizag',
+    pincode: 500039,
+    street: 'uppal'
+  },
+  firstName: 'kiran'
+}
+anuragdb
+
+
