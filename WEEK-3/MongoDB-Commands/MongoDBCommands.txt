@@ -1,5 +1,7 @@
 use anuragdb
 switched to db anuragdb
+
+//display databases
 show databases
 EcomDB     168.00 KiB
 admin       40.00 KiB
@@ -8,8 +10,12 @@ anuragdb2   72.00 KiB
 anuragdb3  128.00 KiB
 config     112.00 KiB
 local       80.00 KiB
+
+//create a collection
 db.createCollection("users")
 { ok: 1 }
+
+//Insertion
 db.users.insertOne({name:"ravi",age:19,city:"hyderabad"})
 {
   acknowledged: true,
@@ -23,6 +29,8 @@ db.users.insertMany([{name:"vikas",age:25,city:"hyderabad"},{name:"sachin",age:2
     '1': ObjectId('6983b2c61109e1f7dd13a7e3')
   }
 }
+
+//Display
 db.users.find()
 {
   _id: ObjectId('6983b2bc1109e1f7dd13a7e1'),
@@ -49,6 +57,8 @@ db.users.findOne()
   age: 19,
   city: 'hyderabad'
 }
+
+//Updation
 db.users.updateOne({name:"ravi"},{$set:{name:"ravi kumar"}})
 {
   acknowledged: true,
@@ -57,6 +67,8 @@ db.users.updateOne({name:"ravi"},{$set:{name:"ravi kumar"}})
   modifiedCount: 1,
   upsertedCount: 0
 }
+
+//Deletion
 db.users.deleteOne({name:"ravi kumar"})
 {
   acknowledged: true,
@@ -75,11 +87,8 @@ db.users.find()
   age: 20,
   city: 'sec'
 }
-db.users.find({age:$gt:18})
-SyntaxError: Unexpected token, expected "," (1:22)
 
-> 1 | db.users.find({age:$gt:18})
-    |                       ^
+//display users whose age is greater than 18
 db.users.find({age:{$gt:18}})
 {
   _id: ObjectId('6983b2c61109e1f7dd13a7e2'),
@@ -93,6 +102,8 @@ db.users.find({age:{$gt:18}})
   age: 20,
   city: 'sec'
 }
+
+//Create a collection
 db.createCollection("emps")
 { ok: 1 }
 show collections
@@ -135,6 +146,8 @@ db.emps.findOne({name:"ravi"})
 }
 db.emps.findOne({skills:["javascript","react","css"]})
 null
+
+//$all operation
 db.emps.findOne({skills:{$all:["javascript","react","css"]}})
 {
   _id: ObjectId('6983b3671109e1f7dd13a7e4'),
@@ -150,6 +163,8 @@ db.emps.findOne({skills:{$all:["javascript","react","css"]}})
     pincode: 500039
   }
 }
+
+//$set operation
 db.emps.updateOne({eno:100},{$set:{"address.street":"uppal"}})
 {
   acknowledged: true,
@@ -182,6 +197,8 @@ db.emps.findOne()
     street: 'uppal'
   }
 }
+
+//$set operation
 db.emps.updateOne({eno:100},{$unset:{name:""}})
 {
   acknowledged: true,
@@ -215,5 +232,6 @@ db.emps.findOne()
   firstName: 'kiran'
 }
 anuragdb
+
 
 
