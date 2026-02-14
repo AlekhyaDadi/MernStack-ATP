@@ -1,0 +1,130 @@
+### User Register
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+  "firstName": "Viyaan",
+  "lastName": "Reddy",
+  "email": "viyaan.user@example.com",
+  "password": "viyaan@12345",
+  "profileImageUrl": ""
+}
+
+### User Login
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+  "email": "viyaan.user@example.com",
+  "password": "viyaan@12345"
+}
+
+### Author Register
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+  "firstName": "Maanvik",
+  "lastName": "Reddy",
+  "email": "maanvik.author@example.com",
+  "password": "maanvik@12345",
+  "profileImageUrl": ""
+}
+
+
+### Author Login
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+  "email": "maanvik.author@example.com",
+  "password": "maanvik@12345"
+}
+
+
+
+### Create article (AUTHOR)
+POST http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "author":"698ff654a229412097b908ae",
+  "title":"test3 article",
+  "category":"fictional",
+  "content":"content of test3 article"
+}
+
+
+
+###Read articles of a author
+GET http://localhost:4000/author-api/articles/698ff654a229412097b908ae
+
+
+
+### Update article (AUTHOR)
+PUT http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "author":"698ab6274fea47da4ef18802",
+  "articleId":"698ab91f2e9f63a8c628749c",
+  "title":"test3 article updated",
+  "category":"comic",
+  "content":"content of test3 article updated"
+}
+
+
+
+### Logout
+GET http://localhost:4000/common-api/logout
+
+
+
+### block the user
+PUT http://localhost:4000/admin-api/users
+Content-Type: application/json
+
+{
+  "author": "698ff61ea229412097b908ab"
+}
+
+
+### unblock the user
+PUT http://localhost:4000/admin-api/users/unblock
+Content-Type: application/json
+
+{
+  "author": "698ff61ea229412097b908ab"
+}
+
+
+###change the password
+PUT http://localhost:4000/common-api/change-password
+Content-Type: application/json
+
+{
+  "email":"alekhya.user@gmail.com",
+  "oldPassword":"alekhya@12345",
+  "newPassword":"alekhyadadi@12345"
+}
+
+
+
+### SOFT DELETE ARTICLE
+PUT http://localhost:4000/author-api/articles/soft-delete
+Content-Type: application/json
+
+{
+  "author": "698c89fb9faa3c810fe2c30f",
+  "articleId": "698c8a649faa3c810fe2c314"
+}
+
+
+### SOFT Restore ARTICLE
+PUT http://localhost:4000/author-api/articles/restore
+Content-Type: application/json
+
+{
+  "author": "698c89fb9faa3c810fe2c30f",
+  "articleId": "698c8a649faa3c810fe2c314"
+}
